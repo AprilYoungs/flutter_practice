@@ -64,6 +64,17 @@ class _LayoutsState extends State<Layouts> {
           child: SafeArea(
             child:ListView(
               children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    ListTile(
+                      title: Text("Single-child",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      ),
+                    )
+                  ],
+                ),
                 ColumnCell("Container", ()=>{
                   pushTo(context, LayoutPracticePage(title: "container", body: ShowContainer(),))
                 }),
@@ -93,6 +104,20 @@ class _LayoutsState extends State<Layouts> {
                 }),
                 ColumnCell("Transform", ()=>{
                   pushTo(context, LayoutPracticePage(title: "Transform", body: ShowTransform(),))
+                }),
+                Column(
+                  children: <Widget>[
+                    ListTile(
+                      title: Text("Multi-child",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      ),
+                    )
+                  ],
+                ),
+                ColumnCell("Row", ()=>{
+                  pushTo(context, LayoutPracticePage(title: "Row", body: ShowRow(),))
                 }),
               ],
             ),
@@ -337,6 +362,40 @@ class ShowTransform extends StatelessWidget {
                 width: 100,
                 height: 100,
                 color:Colors.black
+            ),
+          ),
+        ],
+      )
+    );
+  }
+}
+
+
+/*multi-child*multi-child*multi-child*multi-child
+* *multi-child*multi-child*multi-child*multi-child
+* *multi-child*multi-child*multi-child*multi-child
+* *multi-child*multi-child*multi-child**/
+
+/*A widget that displays its children in a horizontal array.
+
+To cause a child to expand to fill the available horizontal
+ space, wrap the child in an Expanded widget.*/
+class ShowRow extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Text('Deliver features faster', textAlign: TextAlign.center),
+          ),
+          Expanded(
+            child: Text('Craft beautiful UIs', textAlign: TextAlign.center),
+          ),
+          Expanded(
+            child: FittedBox(
+              fit: BoxFit.fitHeight, // otherwise the logo will be tiny
+              child: const FlutterLogo(),
             ),
           ),
         ],
